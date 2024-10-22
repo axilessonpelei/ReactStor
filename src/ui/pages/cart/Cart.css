@@ -1,0 +1,11 @@
+.favorites-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.favorite-item {
+    background-color: white;
+    margin: 10px;
+    padding: 20px;
+    border: 1px solid black;
+}

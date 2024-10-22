@@ -1,0 +1,23 @@
+.header {
+    background-color: #b60dff;
+    color: #fff;
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+}
+.text {
+    margin: 0 20px;
+}
+.cc {
+    padding: 10px;
+    background-color: #34383b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.cc:hover {
+    background-color: #00ff0d;
+}
