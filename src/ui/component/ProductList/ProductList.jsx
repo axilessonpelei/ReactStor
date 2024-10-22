@@ -30,9 +30,9 @@ const ProductList = () => {
         <button onClick={sortByAlphabetical}>По алфавиту</button>
       </div>
 
-      <div className="products-container">
-        {sortedProducts.map((product) => (
-          <ProductCard key={product.id} product={product} />
+      {/*<div className="products-container">*/}
+      {/*  {sortedProducts.map((product) => (*/}
+      {/*    <ProductCard key={product.id} product={product} />*/}
         ))}
       </div>
     </div>
