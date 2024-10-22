@@ -12,6 +12,14 @@ const ProductCard = () => {
       .then((data) => setProducts(data));
   }, []);
 
+  const toggleFavorite = (product) => {
+    const updatedFavorites = cart.some((fav) => fav.id === product.id)
+      ? cart.filter((fav) => car.id !== product.id)
+      : [...cart, product];
+
+    setCart(products);
+  };
+
   return (
     <div className="product-container">
       {products.length !== 0 &&
@@ -21,7 +29,7 @@ const ProductCard = () => {
             <img className="product-image" src={item.image} alt={item.title} />
             <p className="product-price">Цена: {item.price}</p>
             <p className="product-description">{item.description}</p>
-            <button className="favorite-button">
+            <button onClick={toggleFavorite} className="favorite-button">
               {cart ? "Удалить из корзины" : "Добавить в корзину"}
             </button>
             <div className="rat">

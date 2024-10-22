@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import ProductCard from "../product/Product.jsx";
 import "./ProductList.css";
+import { Context } from "../../../core/context/context.jsx";
 
 const ProductList = () => {
-  const [sortedProducts, setSortedProducts] = useState(products);
+  //Поменять useState на context.
+  const { sortedProducts, setSortedProducts } = useContext(Context);
 
   const sortByPriceAscending = () => {
     const sorted = [...sortedProducts].sort((a, b) => a.price - b.price);
@@ -30,9 +32,9 @@ const ProductList = () => {
         <button onClick={sortByAlphabetical}>По алфавиту</button>
       </div>
 
-      {/*<div className="products-container">*/}
-      {/*  {sortedProducts.map((product) => (*/}
-      {/*    <ProductCard key={product.id} product={product} />*/}
+      <div className="products-container">
+        {sortedProducts.map((product) => (
+          <ProductCard key={product.id} product={product} />
         ))}
       </div>
     </div>

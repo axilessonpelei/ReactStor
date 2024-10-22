@@ -4,8 +4,10 @@ import { Context } from "../../../core/context/context.jsx";
 
 export const Cart = () => {
   return (
-    <div>
-      <h1>Cart</h1>
+    <div className="cartt">
+      <div>
+        <h1>Cart</h1>
+      </div>
     </div>
   );
 };
