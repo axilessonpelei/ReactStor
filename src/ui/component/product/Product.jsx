@@ -3,22 +3,41 @@ import "./Product.css";
 import { Context } from "../../../core/context/context.jsx";
 
 const ProductCard = () => {
-  const [products, setProducts] = useState([]);
-  const { cart, setCart } = useContext(Context);
+  const { cart, products, setProducts, setCart } = useContext(Context);
+  let reviews = [];
+
+  // Функция для отображения звезд вместо числового рейтинга
+  const renderStars = (rating) => {
+    const stars = [];
+    for (let i = 1; i <= 5; i++) {
+      stars.push(
+        <span key={i} className={i <= rating ? "star filled" : "star"}>
+          ★
+        </span>,
+      );
+    }
+    return stars;
+  };
+
+  // Функция добавления в корзину
+  const addToCart = (product) => {
+    setCart((cart) => [...cart, product]);
+  };
+
+  // Функция удаления из корзины
+  const removeCart = (productId) => {
+    setCart((cart) => cart.filter((item) => item.id !== productId));
+  };
+
+  //Функция для добавления отзыва
+  const review = () => {};
+  //функция открытия модального окна
 
   useEffect(() => {
-    fetch("https://fakestoreapi.com/products")
-      .then((res) => res.json())
-      .then((data) => setProducts(data));
+    fetch("https://fakestoreapi.com/products").then((res) => {
+      res.json().then((r) => setProducts(r));
+    });
   }, []);
-
-  const toggleFavorite = (product) => {
-    const updatedFavorites = cart.some((fav) => fav.id === product.id)
-      ? cart.filter((fav) => car.id !== product.id)
-      : [...cart, product];
-
-    setCart(products);
-  };
 
   return (
     <div className="product-container">
@@ -29,19 +48,37 @@ const ProductCard = () => {
             <img className="product-image" src={item.image} alt={item.title} />
             <p className="product-price">Цена: {item.price}</p>
             <p className="product-description">{item.description}</p>
-            <button onClick={toggleFavorite} className="favorite-button">
-              {cart ? "Удалить из корзины" : "Добавить в корзину"}
+            <button
+              className="cc"
+              onClick={() => {
+                addToCart(item);
+              }}
+            >
+              {" "}
+              Добавить в корзину
             </button>
-            <div className="rat">
-              <span className="products-rating.rate">{item.rating.rate} </span>
-
+            <span> </span>
+            <button
+              className="cc"
+              onClick={() => {
+                removeCart(item);
+              }}
+            >
+              удалить из корзины{" "}
+            </button>
+            <div className="rating">
+              <span className="rating">{renderStars(item.rating.rate)} </span>
               <span className="products-rating.count">
                 {" "}
                 {item.rating.count}
               </span>
             </div>
-            <button> добавить отзыв</button>
-            <input />
+            <button className="dp" onClick={review}>
+              {" "}
+              добавить отзыв
+            </button>
+            <input placeholder="ставить отзыв" />
+            <button className="dp">просмотр отзывов</button>
           </div>
         ))}
     </div>

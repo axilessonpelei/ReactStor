@@ -4,6 +4,31 @@
     padding: 20px;
     width: 460px;
     text-align: center;
+    position: relative;
+    border: 2px solid; /*сплошная линия*/
+    transition: box-shadow 0.3s ease;
+}
+.product-card:hover {
+    box-shadow: 16px 16px 16px rgba(0, 0, 0, 0.2);
+}
+.rating .star {
+    font-size: 18px;
+    color: #9c9898;
+}
+
+.rating .star.filled {
+    color: gold;
+}
+
+.dp {
+    background-color: #6086a5;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.dp:hover {
+    background-color: #8964e8;
 }
 .product-title, .product-price, .product-description {
     white-space: nowrap;
@@ -30,4 +55,5 @@ gap: 20px;
     padding: 20px;
     background-color: #987fce;
 }
+
 
