@@ -64,10 +64,11 @@ const ProductCard = () => {
   };
 
   useEffect(() => {
-    fetch("https://fakestoreapi.com/products").then((res) => {
-      res.json().then((r) => setProducts(r));
-    });
-  }, []);
+    async () => {
+      const products = await getData("https://fakestoreapi.com/products/");
+      setProduct(products);
+    };
+  });
 
   return (
     <div className="product-container">
@@ -93,7 +94,6 @@ const ProductCard = () => {
             </button>
           </div>
         ))}
-      // модальное окно
       {isModalOpen && (
         <div className="modal">
           <div className="modal-content">
