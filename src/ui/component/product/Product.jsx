@@ -1,9 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./Product.css";
 import { Context } from "../../../core/context/context.jsx";
+import { services } from "../../../services/services.js";
 
 const ProductCard = () => {
-  const { cart, products, setProducts, setCart } = useContext(Context);
+  const { products, setProducts, setCart } = useContext(Context);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null); // Продукт, выбранный для показа отзывов
   const [reviews, setReviews] = useState([]); // Хранение отзывов
@@ -64,11 +65,11 @@ const ProductCard = () => {
   };
 
   useEffect(() => {
-    async () => {
-      const products = await getData("https://fakestoreapi.com/products/");
-      setProduct(products);
-    };
-  });
+    (async () => {
+      const products = await services("https://fakestoreapi.com/products/");
+      setProducts(products);
+    })();
+  }, []);
 
   return (
     <div className="product-container">
